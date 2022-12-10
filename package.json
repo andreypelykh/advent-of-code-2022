@@ -1,0 +1,10 @@
+{
+  "name": "advent-of-code-2022",
+  "version": "0.0.0",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
+  }
+}
