@@ -1,5 +1,24 @@
 const findMyTotalScore = (input) => sum(input.split('\n').map(findRoundScore));
+
+const findMyTotalScorePart2 = (input) =>
+  sum(
+    input.split('\n').map(([opponentShape, _, roundResult]) => {
+      const resultFunction = getResultFunction(roundResult);
+      const myShape = getShapeFor(opponentShape, resultFunction);
+      return findRoundScore(opponentShape + ' ' + myShape);
+    })
+  );
+
 const sum = (elements) => elements.reduce((a, b) => a + b);
+
+const getResultFunction = (roundResult) => {
+  if (roundResult === 'X') return isLost;
+  if (roundResult === 'Y') return isDraw;
+  if (roundResult === 'Z') return isWon;
+};
+
+const getShapeFor = (opponentShape, check) =>
+  ['X', 'Y', 'Z'].find((myShape) => check(opponentShape, myShape));
 
 const findRoundScore = ([a, _, b]) =>
   getShapeScore(b) + getRoundOutcomeScore(a, b);
@@ -28,4 +47,4 @@ const isRock = (a) => a === 'A' || a === 'X';
 const isPaper = (a) => a === 'B' || a === 'Y';
 const isScissors = (a) => a === 'C' || a === 'Z';
 
-module.exports = { findMyTotalScore, findRoundScore };
+module.exports = { findRoundScore, findMyTotalScore, findMyTotalScorePart2 };
