@@ -2,6 +2,7 @@ const {
   findSharedItem,
   getItemPriority,
   findSumOfPriorities,
+  findSumOfGroupPriorities,
 } = require('./index');
 const input = require('fs').readFileSync('day3/input.txt').toString();
 
@@ -16,4 +17,8 @@ test('getItemPriority', () => {
 
 test('findSumOfPriorities', () => {
   expect(findSumOfPriorities(input)).toBe(157);
+});
+
+test('findSumOfGroupPriorities', () => {
+  expect(findSumOfGroupPriorities(input)).toBe(70);
 });
